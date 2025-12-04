@@ -50,7 +50,7 @@ function displayProductInfo() {
   const descriptionEl = document.querySelector('.details-description');
 
   titleEl.textContent = currentProduct.title;
-  articleEl.textContent = `Артикул: ${currentProduct.article}`;
+  articleEl.textContent = `Art: ${currentProduct.article}`;
   priceEl.textContent = `₽${currentProduct.price}`;
   
   // Отображаем описание, если оно есть

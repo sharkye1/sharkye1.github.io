@@ -3,13 +3,27 @@
     {
       "id": "software-001",
       "title": "Szhimatar license",
-      "description": "Сожми свой ебаный мир 💀",
+      "description": "Compress your f**kin world 💀\nExclusive version for only 2025 sale.",
       "article": "P-1",
       "price": 3999,
       "category": "software",
       "media": [
-        { "type": "image", "src": "/assets/media/P-1-logo.jpg" },
-        { "type": "image", "src": "/assets/media/placeholder.svg" }
+        { "type": "image", "src": "/assets/media/P-1-logo.png" },
+        { "type": "image", "src": "/assets/media/P-1-second.jpg" }
+      ]
+    },
+
+    {
+      "id": "longsleeve-1",
+      "title": "Longsleeve Szhimatar Limited",
+      "description": "This is not a drill. This is the real deal. Limited edition longsleeve shirt featuring exclusive Szhimatar design.",
+      "article": "longsleeve-1",
+      "price": 7999,
+      "category": "clothing",
+      "media": [
+        { "type": "image", "src": "/assets/media/longsleeve-1-front.png" },
+        { "type": "image", "src": "/assets/media/longsleeve-1-back.png" }
+
       ]
     }
     
