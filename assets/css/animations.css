@@ -1,0 +1,15 @@
+/* РАСТВОРЕНИЕ (для удаления товаров из корзины) */
+@keyframes dissolve {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(5px, -5px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, 10px) scale(0.9);
+  }
+}

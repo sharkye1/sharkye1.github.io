@@ -1,0 +1,375 @@
+/* STYLES FOR INDEX PAGE (ГЛАВНАЯ) */
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-darker);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  animation: splashFadeOut 0.8s ease-out forwards;
+  animation-delay: 4s;
+}
+
+@keyframes splashFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+    filter: brightness(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+  }
+}
+
+.splash-logo {
+  width: 200px;
+  height: 200px;
+  background: 
+    radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.3), transparent 50%),
+    radial-gradient(circle at 60% 60%, rgba(255, 0, 255, 0.3), transparent 50%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-shadow: 
+    0 0 20px var(--primary-color),
+    0 0 40px var(--secondary-color);
+  animation: splashVibrate 0.3s infinite, splashGlow 2s infinite;
+  border: 3px solid var(--primary-color);
+  box-shadow: 
+    0 0 20px var(--primary-color),
+    inset 0 0 20px rgba(255, 0, 255, 0.3),
+    0 0 40px var(--secondary-color);
+}
+
+@keyframes splashVibrate {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(3px, -3px) rotate(1deg); }
+  50% { transform: translate(-3px, 3px) rotate(-1deg); }
+  75% { transform: translate(3px, 3px) rotate(0.5deg); }
+}
+
+@keyframes splashGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px var(--primary-color),
+      inset 0 0 20px rgba(255, 0, 255, 0.3),
+      0 0 40px var(--secondary-color);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px var(--secondary-color),
+      inset 0 0 30px rgba(0, 255, 255, 0.5),
+      0 0 60px var(--primary-color);
+  }
+}
+
+.splash-text {
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  animation: textGlitch 0.4s infinite;
+  color: var(--secondary-color);
+  text-shadow: 
+    0 0 10px var(--secondary-color),
+    2px 0 0 var(--primary-color),
+    -2px 0 0 var(--accent-color);
+}
+
+@keyframes textGlitch {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px var(--secondary-color),
+      2px 0 0 var(--primary-color),
+      -2px 0 0 var(--accent-color);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px var(--primary-color),
+      3px 0 0 var(--secondary-color),
+      -3px 0 0 var(--accent-color);
+  }
+}
+
+#tv-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.5) 2px,
+      rgba(0, 0, 0, 0.5) 4px
+    );
+  background-size: 100% 8px;
+  pointer-events: none;
+  z-index: 9998;
+  animation: tvScanlines 0.1s infinite;
+}
+
+@keyframes tvScanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 8px;
+  }
+}
+
+/* ГЛАВНАЯ СТРАНИЦА */
+#home-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  opacity: 0;
+  animation: fadeInGlitch 1s ease-out forwards;
+  /* Запускаем появление главной страницы после полного скрытия splash + паузы */
+  animation-delay: 7s;
+}
+
+.logo-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 35% 35%, rgba(0, 255, 255, 0.4), transparent 50%),
+    radial-gradient(circle at 65% 65%, rgba(255, 0, 150, 0.4), transparent 50%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-shadow: 
+    0 0 30px var(--primary-color),
+    0 0 60px var(--secondary-color);
+  animation: logoVibrate 0.3s infinite, logoGlow 3s infinite;
+  border: 3px solid var(--primary-color);
+  box-shadow: 
+    0 0 30px var(--primary-color),
+    inset 0 0 30px rgba(255, 0, 255, 0.4),
+    0 0 60px var(--secondary-color);
+  cursor: pointer;
+  position: relative;
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 255, 255, 0.1) 2px,
+      rgba(0, 255, 255, 0.1) 4px
+    );
+  border-radius: 50%;
+  animation: verticalJitter 0.2s infinite;
+}
+
+@keyframes logoVibrate {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(4px, -4px) rotate(1.5deg); }
+  50% { transform: translate(-4px, 4px) rotate(-1.5deg); }
+  75% { transform: translate(4px, 4px) rotate(1deg); }
+}
+
+@keyframes logoGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 30px var(--primary-color),
+      inset 0 0 30px rgba(255, 0, 255, 0.4),
+      0 0 60px var(--secondary-color);
+    text-shadow: 
+      0 0 30px var(--primary-color),
+      0 0 60px var(--secondary-color);
+  }
+  50% {
+    box-shadow: 
+      0 0 50px var(--secondary-color),
+      inset 0 0 40px rgba(0, 255, 255, 0.6),
+      0 0 80px var(--primary-color);
+    text-shadow: 
+      0 0 50px var(--secondary-color),
+      0 0 80px var(--primary-color);
+  }
+}
+
+@keyframes verticalJitter {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+.home-buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-button {
+  min-width: 200px;
+  padding: 18px 36px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--bg-darker);
+  border: 3px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.5),
+    2px 2px 0px rgba(255, 0, 150, 0.3);
+  box-shadow: 
+    0 0 15px var(--primary-color),
+    inset 0 0 10px rgba(0, 255, 255, 0.2),
+    0 0 25px rgba(255, 0, 150, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.home-button:hover {
+  transform: skew(-3deg) scale(1.1);
+  box-shadow: 
+    0 0 25px var(--secondary-color),
+    inset 0 0 15px rgba(255, 0, 255, 0.3),
+    0 0 35px rgba(255, 0, 150, 0.4);
+  filter: drop-shadow(3px 0 0 var(--secondary-color)) drop-shadow(-3px 0 0 var(--primary-color));
+}
+
+.home-button:hover::before {
+  left: 100%;
+}
+
+.home-button:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 0 20px var(--primary-color);
+}
+
+/* ОПАСНАЯ КНОПКА */
+#danger-button {
+  background: linear-gradient(135deg, #ff0000, #ff6600);
+  border-color: #ff0000;
+  animation: dangerPulse 1.5s infinite;
+}
+
+@keyframes dangerPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px #ff0000,
+      inset 0 0 5px rgba(255, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 25px #ff0000,
+      inset 0 0 15px rgba(255, 0, 0, 0.4);
+  }
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+  #home-page {
+    gap: 40px;
+  }
+
+  .logo-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .home-buttons {
+    gap: 15px;
+  }
+
+  .home-button {
+    min-width: 150px;
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  #home-page {
+    gap: 30px;
+  }
+
+  .logo-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .logo {
+    font-size: 2rem;
+    border-width: 2px;
+  }
+
+  .home-buttons {
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .home-button {
+    width: 100%;
+    min-width: auto;
+  }
+}

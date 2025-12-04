@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ОФОРМЛЕНИЕ ЗАКАЗА - SZHIMA Store</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/order.css">
+  
+  <!-- Meta -->
+  <meta name="description" content="Order Checkout - SZHIMA Retro Store">
+  <meta name="theme-color" content="#1a1a1a">
+</head>
+<body>
+  <div id="order-page">
+    <!-- ЗАГОЛОВОК -->
+    <div class="order-header">
+      <h1 class="order-title">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="order-container">
+      <!-- ЛЕВАЯ КОЛОНКА - ТОВАРЫ -->
+      <div class="cart-items-section">
+        <div class="cart-items-title">ТОВАРЫ В КОРЗИНЕ</div>
+        <div class="cart-items-list"></div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА - ФОРМА -->
+      <div class="order-form-section">
+        <!-- АДРЕС ДОСТАВКИ -->
+        <div class="form-group">
+          <label class="form-label">ФИО *</label>
+          <input type="text" class="form-input" placeholder="Ваше полное имя" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Телефон *</label>
+          <input type="tel" class="form-input" placeholder="+7 (999) 999-99-99" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" class="form-input" placeholder="example@mail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Адрес *</label>
+          <input type="text" class="form-input" placeholder="Улица, дом, квартира" required>
+        </div>
+
+        <!-- СПОСОБ ДОСТАВКИ -->
+        <div class="form-group">
+          <label class="form-label">Способ доставки *</label>
+          <select class="form-select" required>
+            <option value="">-- Выберите --</option>
+            <option value="courier">Курьер</option>
+            <option value="post">Почта</option>
+            <option value="pickup">Самовывоз</option>
+          </select>
+        </div>
+
+        <!-- СПОСОБ ОПЛАТЫ -->
+        <div class="form-group">
+          <label class="form-label">Способ оплаты *</label>
+          <select class="form-select" required>
+            <option value="">-- Выберите --</option>
+            <option value="card">Карта</option>
+            <option value="sbp">СПБ</option>
+            <option value="crypto">Крипта</option>
+            <option value="soul">Душа 👻</option>
+          </select>
+        </div>
+
+        <!-- ПРОМОКОД -->
+        <div class="form-group">
+          <label class="form-label">Промокод</label>
+          <div class="promo-section">
+            <input type="text" class="promo-input" placeholder="Введите промокод">
+            <button class="promo-button">ПРИМЕНИТЬ</button>
+          </div>
+        </div>
+
+        <!-- СУММА -->
+        <div class="order-summary"></div>
+
+        <!-- КНОПКА ЗАКАЗА -->
+        <button class="order-button">📤 ОФОРМИТЬ ЗАКАЗ</button>
+      </div>
+    </div>
+
+    <!-- ПУСТАЯ КОРЗИНА -->
+    <div class="empty-cart" style="display: none;">
+      <div class="empty-cart-message">🛒 Ваша корзина пуста</div>
+      <a href="/catalog.html" class="back-to-catalog">ПЕРЕЙТИ В КАТАЛОГ</a>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="/assets/js/order.js"></script>
+</body>
+</html>

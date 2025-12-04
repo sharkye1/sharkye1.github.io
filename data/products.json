@@ -1,0 +1,17 @@
+{
+  "products": [
+    {
+      "id": "software-001",
+      "title": "Szhimatar license",
+      "description": "Сожми свой ебаный мир 💀",
+      "article": "P-1",
+      "price": 3999,
+      "category": "software",
+      "media": [
+        { "type": "image", "src": "/assets/media/P-1-logo.jpg" },
+        { "type": "image", "src": "/assets/media/placeholder.svg" }
+      ]
+    }
+    
+  ]
+}

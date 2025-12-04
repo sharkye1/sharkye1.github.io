@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КАТАЛОГ - SZHIMA Store</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/catalog.css">
+  
+  <!-- Meta -->
+  <meta name="description" content="Product Catalog - SZHIMA Retro Store">
+  <meta name="theme-color" content="#1a1a1a">
+</head>
+<body>
+  <div id="catalog-page">
+    <!-- ЗАГОЛОВОК -->
+    <div class="catalog-header">
+      <div class="catalog-title">КАТАЛОГ</div>
+      <div class="header-nav">
+        <button id="home-nav-btn" class="nav-link">← ГЛАВНАЯ</button>
+        <a href="/order.html" class="nav-link">🛒 КОРЗИНА</a>
+      </div>
+    </div>
+
+    <!-- КОНТЕЙНЕР С ТОВАРАМИ -->
+    <div class="catalog-container">
+      <div class="product-viewport">
+        <!-- Товары загружаются динамически -->
+      </div>
+    </div>
+
+    <!-- ИНДИКАТОРЫ И НАВИГАЦИЯ -->
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 20px;">
+      <div class="catalog-indicators"></div>
+      
+      <div class="counter">1 / 8</div>
+
+      <div class="catalog-nav">
+        <button id="prev-btn" class="nav-button">← ПРЕДЫДУЩИЙ</button>
+        <button id="next-btn" class="nav-button">СЛЕДУЮЩИЙ →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="/assets/js/catalog.js"></script>
+</body>
+</html>

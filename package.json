@@ -1,0 +1,15 @@
+{
+  "name": "szhima-store",
+  "version": "1.0.0",
+  "description": "Retro CRT Glitch aesthetic static store for GitHub Pages",
+  "keywords": [
+    "retro",
+    "crt",
+    "glitch",
+    "ecommerce",
+    "static",
+    "github-pages"
+  ],
+  "author": "SZHIMA",
+  "license": "MIT"
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ТОВАР - SZHIMA Store</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/product.css">
+  
+  <!-- Meta -->
+  <meta name="description" content="Product Details - SZHIMA Retro Store">
+  <meta name="theme-color" content="#1a1a1a">
+</head>
+<body>
+  <div id="product-page">
+    <!-- ЗАГОЛОВОК -->
+    <div class="product-header">
+      <button class="back-button">← НАЗАД</button>
+      <div class="product-page-title">ТОВАР</div>
+      <a href="/order.html" style="text-decoration: none;">🛒</a>
+    </div>
+
+    <!-- КОНТЕНТ -->
+    <div class="product-content">
+      <!-- ГАЛЕРЕЯ -->
+      <div class="gallery-section">
+        <div class="main-media">
+          <img src="/assets/media/placeholder.jpg" alt="Product" class="main-media-content">
+        </div>
+        <div class="media-nav"></div>
+      </div>
+
+      <!-- ИНФОРМАЦИЯ -->
+      <div class="product-details">
+        <div class="details-title">Product Title</div>
+        <div class="details-article">Article: XXX-000</div>
+        <div class="details-price">₽0</div>
+        
+        <div class="details-description">
+          Описание товара загружается из каталога
+        </div>
+
+        <!-- ВЫБОР РАЗМЕРА (если одежда) -->
+        <div class="size-selector">
+          <label class="size-label">Выберите размер:</label>
+          <div class="size-options"></div>
+        </div>
+
+        <!-- КНОПКИ ДЕЙСТВИЯ -->
+        <div class="action-buttons">
+          <button class="add-to-cart-btn">ДОБАВИТЬ В КОРЗИНУ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="/assets/js/product.js"></script>
+</body>
+</html>
