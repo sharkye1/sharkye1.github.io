@@ -70,12 +70,13 @@
   position: relative;
   width: 100%;
   max-width: 600px;
-  height: 600px;
+  min-height: 500px;
+  height: auto;
   background: 
     radial-gradient(circle at center, rgba(0, 100, 150, 0.1), transparent 70%);
   border: 2px solid var(--primary-color);
   border-radius: 10px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 
     0 0 20px var(--primary-color),
     inset 0 0 20px rgba(0, 255, 255, 0.1);
@@ -187,10 +188,7 @@
 }
 
 .product-article {
-  font-size: 0.9rem;
-  color: var(--accent-color);
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+  display: none;
 }
 
 .product-price {
@@ -294,7 +292,8 @@
   }
 
   .product-viewport {
-    height: 400px;
+    min-height: 450px;
+    height: auto;
     max-width: 100%;
   }
 
@@ -332,7 +331,8 @@
   }
 
   .product-viewport {
-    height: 350px;
+    min-height: 400px;
+    height: auto;
     border-width: 1px;
   }
 

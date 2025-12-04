@@ -138,13 +138,34 @@ function createProductElement(product) {
     font-weight: bold;
     border-radius: 3px;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
   `;
-  viewBtn.addEventListener('click', () => {
+  viewBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    window.location.href = `/product.html?id=${product.id}`;
+  });
+  viewBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     window.location.href = `/product.html?id=${product.id}`;
   });
 
   infoSection.appendChild(viewBtn);
   item.appendChild(infoSection);
+  
+  // Делаем весь item кликабельным
+  item.style.cursor = 'pointer';
+  item.addEventListener('click', (e) => {
+    if (e.target === item || e.target.closest('.product-media-section') || e.target.closest('.product-info')) {
+      window.location.href = `/product.html?id=${product.id}`;
+    }
+  });
+  item.addEventListener('touchend', (e) => {
+    if (e.target === item || e.target.closest('.product-media-section') || e.target.closest('.product-info')) {
+      e.preventDefault();
+      window.location.href = `/product.html?id=${product.id}`;
+    }
+  });
 
   return item;
 }
