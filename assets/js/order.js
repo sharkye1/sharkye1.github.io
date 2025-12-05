@@ -420,7 +420,7 @@ async function showSuccessAnimation() {
   // Звуковой эффект - воспроизводим файл
   try {
     const audio = new Audio('/assets/media/nain.mp3');
-    audio.volume = 0.7; // 70% громкости
+    audio.volume = 1.0; // 100% громкости
     audio.play().catch(err => console.log('Звук не воспроизведён:', err));
   } catch (e) {
     // Звук не важен, если не сработает

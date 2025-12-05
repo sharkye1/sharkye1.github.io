@@ -46,16 +46,12 @@
   align-items: center;
   font-size: 2.5rem;
   font-weight: bold;
-  color: var(--primary-color);
-  text-shadow: 
-    0 0 20px var(--primary-color),
-    0 0 40px var(--secondary-color);
+  color: #111;
+  /* Black glow instead of neon */
+  text-shadow: 0 0 10px rgba(0,0,0,0.95);
   animation: splashVibrate 0.3s infinite, splashGlow 2s infinite;
-  border: 3px solid var(--primary-color);
-  box-shadow: 
-    0 0 20px var(--primary-color),
-    inset 0 0 20px rgba(255, 0, 255, 0.3),
-    0 0 40px var(--secondary-color);
+  border: 3px solid rgba(0,0,0,0.6);
+  box-shadow: 0 0 30px rgba(0,0,0,0.95), inset 0 0 20px rgba(0,0,0,0.6);
 }
 
 @keyframes splashVibrate {
@@ -67,16 +63,10 @@
 
 @keyframes splashGlow {
   0%, 100% { 
-    box-shadow: 
-      0 0 20px var(--primary-color),
-      inset 0 0 20px rgba(255, 0, 255, 0.3),
-      0 0 40px var(--secondary-color);
+    box-shadow: 0 0 30px rgba(0,0,0,0.95), inset 0 0 20px rgba(0,0,0,0.6);
   }
   50% {
-    box-shadow: 
-      0 0 30px var(--secondary-color),
-      inset 0 0 30px rgba(0, 255, 255, 0.5),
-      0 0 60px var(--primary-color);
+    box-shadow: 0 0 40px rgba(0,0,0,1), inset 0 0 30px rgba(0,0,0,0.7);
   }
 }
 
@@ -167,26 +157,44 @@
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 35% 35%, rgba(0, 255, 255, 0.4), transparent 50%),
-    radial-gradient(circle at 65% 65%, rgba(255, 0, 150, 0.4), transparent 50%);
+    radial-gradient(circle at 35% 35%, rgba(0, 0, 0, 0.4), transparent 50%),
+    radial-gradient(circle at 65% 65%, rgba(0, 0, 0, 0.4), transparent 50%);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4rem;
   font-weight: bold;
-  color: var(--primary-color);
-  text-shadow: 
-    0 0 30px var(--primary-color),
-    0 0 60px var(--secondary-color);
+  color: #111;
+  /* Black glow */
+  text-shadow: 0 0 12px rgba(0,0,0,0.95);
   animation: logoVibrate 0.3s infinite, logoGlow 3s infinite;
-  border: 3px solid var(--primary-color);
-  box-shadow: 
-    0 0 30px var(--primary-color),
-    inset 0 0 30px rgba(255, 0, 255, 0.4),
-    0 0 60px var(--secondary-color);
+  border: 3px solid rgba(0,0,0,0.6);
+  box-shadow: 0 0 40px rgba(0,0,0,0.95), inset 0 0 30px rgba(0,0,0,0.6);
   cursor: pointer;
   position: relative;
+}
+
+/* SVG logo inside circular containers */
+.logo-svg {
+  /* SVG will fully fill the circular logo area; forced to 300x300 by container */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 8px var(--primary-color));
+}
+
+.splash-logo-svg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* Force logo size 300x300 on all viewports */
+.logo-container, .logo {
+  width: 330px !important;
+  height: 330px !important;
 }
 
 .logo::before {
@@ -217,22 +225,12 @@
 
 @keyframes logoGlow {
   0%, 100% { 
-    box-shadow: 
-      0 0 30px var(--primary-color),
-      inset 0 0 30px rgba(255, 0, 255, 0.4),
-      0 0 60px var(--secondary-color);
-    text-shadow: 
-      0 0 30px var(--primary-color),
-      0 0 60px var(--secondary-color);
+    box-shadow: 0 0 40px rgba(0,0,0,0.95), inset 0 0 30px rgba(0,0,0,0.6);
+    text-shadow: 0 0 12px rgba(0,0,0,0.95);
   }
   50% {
-    box-shadow: 
-      0 0 50px var(--secondary-color),
-      inset 0 0 40px rgba(0, 255, 255, 0.6),
-      0 0 80px var(--primary-color);
-    text-shadow: 
-      0 0 50px var(--secondary-color),
-      0 0 80px var(--primary-color);
+    box-shadow: 0 0 60px rgba(0,0,0,1), inset 0 0 40px rgba(0,0,0,0.75);
+    text-shadow: 0 0 16px rgba(0,0,0,1);
   }
 }
 
