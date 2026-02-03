@@ -28,7 +28,7 @@ const i18n = {
         viewOnGithub: 'Увидеть на GitHub →',
         
         // Footer
-        footer: '© 2026 Question Bank. Только GitHub API. Никаких серверов.'
+        footer: '© 2026 Question Bank.'
     },
     
     en: {

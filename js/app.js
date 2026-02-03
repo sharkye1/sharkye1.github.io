@@ -84,7 +84,7 @@ class App {
 
     showLabScreen() {
         this.switchScreen('labScreen');
-        document.getElementById('labTitle').textContent = `${this.currentSubjectLabel} — ${t('selectLab')}`;
+        document.getElementById('labTitle').textContent = this.currentSubjectLabel;
         this.renderLabGrid();
     }
 
@@ -96,7 +96,7 @@ class App {
         labs.forEach(lab => {
             const btn = document.createElement('button');
             btn.className = 'btn-lab';
-            btn.textContent = `${lab}`;
+            btn.textContent = `Лаба ${lab}`;
             btn.addEventListener('click', () => {
                 this.selectLab(lab);
             });

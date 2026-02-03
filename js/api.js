@@ -22,32 +22,41 @@ class GitHubAPI {
         }
 
         try {
-            // GitHub Search API требует пробелы между параметрами (не +)
-            // Формат: repo:OWNER/REPO label:subject:БД label:lab:2 label:status:approved is:open
-            // Важно: использовать ПРОБЕЛЫ а не плюсы, и encodeURIComponent для кодирования
-            const q = [
-                `repo:${this.owner}/${this.repo}`,
-                `label:${CONFIG.LABELS.SUBJECT_PREFIX}${subject}`,
-                `label:${CONFIG.LABELS.LAB_PREFIX}${lab}`,
-                `label:${CONFIG.LABELS.STATUS_APPROVED}`,
-                'is:open'
-            ].join(' ');
+            // Формируем labels с корректными кавычками для двоеточий
+            const labels = [
+                `${CONFIG.LABELS.SUBJECT_PREFIX}${subject}`,
+                `${CONFIG.LABELS.LAB_PREFIX}${lab}`,
+                CONFIG.LABELS.STATUS_APPROVED
+            ];
 
-            // Логируем query для дебага
-            console.log('GitHub search query:', q);
+            // Каждый label оборачиваем в label:"..." для корректной обработки двоеточий
+            const labelQuery = labels
+                .map(l => `label:"${l}"`)
+                .join(' ');
+
+            // Формируем полный query
+            const query = `repo:${this.owner}/${this.repo} ${labelQuery} is:open`;
+
+            // Полный URL для дебага
+            const url = `${CONFIG.API_BASE}/search/issues?q=${encodeURIComponent(query)}&sort=created&order=desc&per_page=100`;
+            
+            console.log('GitHub Search Query:', query);
+            console.log('Full URL:', url);
 
             // GitHub API v3 Search API endpoint
-            const response = await fetch(
-                `${CONFIG.API_BASE}/search/issues?q=${encodeURIComponent(q)}&sort=created&order=desc&per_page=100`,
-                {
-                    headers: {
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json'
                 }
-            );
+            });
 
             if (!response.ok) {
-                throw new Error(`GitHub API error: ${response.status}`);
+                console.error('GitHub API Error:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    url: url
+                });
+                throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
