@@ -10,10 +10,19 @@ class App {
     init() {
         // Загружаем язык (без вызова updateUI здесь - app еще не готова)
         this.loadLanguage();
-        this.setupEventListeners();
+        
+        // Показываем начальный экран ПЕРЕД updateUI
+        // UI must be initialized before any rendering calls
         this.showWelcomeScreen();
+        
+        // Навешиваем обработчики событий
+        this.setupEventListeners();
+        
         // updateUI() вызывается в конце, когда приложение полностью инициализировано
-        // Это гарантирует, что глобальная переменная 'app' уже определена
+        // К этому моменту:
+        // - DOM элементы уже созданы (showWelcomeScreen)
+        // - Обработчики навешаны (setupEventListeners)
+        // - Глобальная переменная 'app' уже определена
         updateUI();
     }
 
@@ -87,7 +96,7 @@ class App {
         labs.forEach(lab => {
             const btn = document.createElement('button');
             btn.className = 'btn-lab';
-            btn.textContent = `${t('selectLab').split(' ')[0]} ${lab}`;
+            btn.textContent = `${lab}`;
             btn.addEventListener('click', () => {
                 this.selectLab(lab);
             });
@@ -139,19 +148,30 @@ class App {
     }
 
     createQuestionCard(question) {
-        const card = document.createElement('div');
-        card.className = 'question-card';
+        const details = document.createElement('details');
+        details.className = 'question-item';
 
-        let html = `
-            <h3 class="question-title">${this.escapeHtml(question.question)}</h3>
+        // Summary с текстом вопроса
+        const summary = document.createElement('summary');
+        summary.className = 'question-text';
+        summary.textContent = this.escapeHtml(question.question);
+        details.appendChild(summary);
+
+        // Контент деталей
+        const content = document.createElement('div');
+        content.className = 'question-details';
+
+        // Мета-информация
+        let contentHTML = `
             <div class="question-meta">
                 <p><strong>${t('askedTo')}</strong> ${this.escapeHtml(question.askedTo)}</p>
                 <p><strong>${t('date')}:</strong> <time>${question.date}</time></p>
             </div>
         `;
 
+        // Ответ студента
         if (question.answer) {
-            html += `
+            contentHTML += `
                 <div class="question-answer">
                     <strong>${t('answer')}</strong>
                     <p>${this.escapeHtml(question.answer)}</p>
@@ -159,23 +179,26 @@ class App {
             `;
         }
 
+        // Оценка
         if (question.grade) {
             const gradeLabel = CONFIG.GRADES[question.grade][getLang()] || CONFIG.GRADES[question.grade].ru;
-            html += `
+            contentHTML += `
                 <div class="question-grade ${question.grade}">
-                    <strong>${t('grade')}:</strong> ${gradeLabel}
+                    ${gradeLabel}
                 </div>
             `;
         }
 
-        html += `
+        // Ссылка на GitHub
+        contentHTML += `
             <a href="${question.url}" target="_blank" class="question-link">
                 ${t('viewOnGithub')}
             </a>
         `;
 
-        card.innerHTML = html;
-        return card;
+        content.innerHTML = contentHTML;
+        details.appendChild(content);
+        return details;
     }
 
     openAddQuestion() {

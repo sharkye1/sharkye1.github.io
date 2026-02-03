@@ -22,7 +22,7 @@ const i18n = {
         
         // Карточка вопроса
         askedTo: 'Кому задавался:',
-        date: 'Дата:',
+        date: 'Дата',
         answer: 'Ответ студента:',
         grade: 'Оценка:',
         viewOnGithub: 'Увидеть на GitHub →',
@@ -53,7 +53,7 @@ const i18n = {
         
         // Question card
         askedTo: 'Asked to:',
-        date: 'Date:',
+        date: 'Date',
         answer: 'Student answer:',
         grade: 'Grade:',
         viewOnGithub: 'View on GitHub →',

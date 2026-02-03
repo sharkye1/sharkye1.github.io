@@ -22,22 +22,23 @@ class GitHubAPI {
         }
 
         try {
-            const labels = [
-                `${CONFIG.LABELS.SUBJECT_PREFIX}${subject}`,
-                `${CONFIG.LABELS.LAB_PREFIX}${lab}`,
-                CONFIG.LABELS.STATUS_APPROVED
-            ];
+            // GitHub Search API требует пробелы между параметрами (не +)
+            // Формат: repo:OWNER/REPO label:subject:БД label:lab:2 label:status:approved is:open
+            // Важно: использовать ПРОБЕЛЫ а не плюсы, и encodeURIComponent для кодирования
+            const q = [
+                `repo:${this.owner}/${this.repo}`,
+                `label:${CONFIG.LABELS.SUBJECT_PREFIX}${subject}`,
+                `label:${CONFIG.LABELS.LAB_PREFIX}${lab}`,
+                `label:${CONFIG.LABELS.STATUS_APPROVED}`,
+                'is:open'
+            ].join(' ');
 
-            const query = labels.map(label => `label:"${label}"`).join('+');
-            const url = `${CONFIG.API_BASE}${CONFIG.ISSUES_ENDPOINT.replace('{owner}', this.owner).replace('{repo}', this.repo)}?${new URLSearchParams({
-                q: query,
-                state: 'open',
-                per_page: 100
-            })}`;
+            // Логируем query для дебага
+            console.log('GitHub search query:', q);
 
-            // GitHub API v3 для поиска issues по labels
+            // GitHub API v3 Search API endpoint
             const response = await fetch(
-                `${CONFIG.API_BASE}/search/issues?q=repo:${this.owner}/${this.repo}+${query}+is:open&sort=created&order=desc&per_page=100`,
+                `${CONFIG.API_BASE}/search/issues?q=${encodeURIComponent(q)}&sort=created&order=desc&per_page=100`,
                 {
                     headers: {
                         'Accept': 'application/vnd.github.v3+json'
@@ -116,7 +117,9 @@ class GitHubAPI {
     }
 
     /**
-     * Генерировать URL для создания нового Issue
+     * Генерировать URL для создания нового Issue на GitHub
+     * GitHub автоматически обработает labels переданные через параметр labels=
+     * Формат labels: label1,label2,label3 (без пробелов, разделены запятой)
      */
     generateIssueURL(subject, lab, subjectLabel) {
         const title = `${subjectLabel} — Лаба ${lab} — `;
@@ -131,10 +134,13 @@ class GitHubAPI {
 
 Оценка ответа: `;
 
+        // Используем правильные label names из CONFIG
+        // Статус по умолчанию - pending (для модерации)
+        // После одобрения модератор смените на status:approved
         const labels = [
-            `subject:${subject}`,
-            `lab:${lab}`,
-            'status:pending'
+            `${CONFIG.LABELS.SUBJECT_PREFIX}${subject}`,
+            `${CONFIG.LABELS.LAB_PREFIX}${lab}`,
+            CONFIG.LABELS.STATUS_PENDING
         ];
 
         const params = new URLSearchParams({
